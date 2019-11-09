@@ -20,7 +20,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('auth_level');
+            $table->bigInteger('blog_user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('blog_user_id')->references('id')->
+                on('blog_users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
