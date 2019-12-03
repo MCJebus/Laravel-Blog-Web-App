@@ -9,5 +9,7 @@ $factory->define(Comment::class, function (Faker $faker) {
     return [
         //
         'text' => $faker->realText(50, 2),
+        'post_id' => $faker->numberBetween(1, 50),
+        'blog_user_id' => $faker->numberBetween(1, 51),
     ];
 });

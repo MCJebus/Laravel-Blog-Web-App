@@ -19,7 +19,11 @@ class CreateBlogUsersTable extends Migration
             $table->dateTime('date_of_birth')->nullable();
             $table->string('status')->nullable();
             $table->string('phone_number')->nullable();
+            $table->unsignedBigInteger('user_id')->index();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->
+                on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

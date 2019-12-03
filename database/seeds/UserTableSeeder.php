@@ -18,8 +18,8 @@ class UserTableSeeder extends Seeder
         $a->email = '957457@swansea.ac.uk';
         $a->password = 'secret';
         $a->auth_level = 'admin';
-        $a->blog_user_id = 1;
         $a->save();
 
+        factory(App\User::class, 50)->create();
     }
 }

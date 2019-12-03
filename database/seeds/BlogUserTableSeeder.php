@@ -18,6 +18,7 @@ class BlogUserTableSeeder extends Seeder
         $a->date_of_birth = "2001-03-15 02:00:49";
         $a->status = "I like animals";
         $a->phone_number = "(888) 937-7238";
+        $a->user_id = 51;
         $a->save();
 
         factory(App\BlogUser::class, 50)->create();

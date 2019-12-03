@@ -11,5 +11,6 @@ $factory->define(BlogUser::class, function (Faker $faker) {
         'name' => $faker->firstName() . " " . $faker->lastName(),
         'date_of_birth' => $faker->dateTimeBetween('-50 years', '-18 years'),
         'phone_number' => $faker->tollFreePhoneNumber(),
+        'user_id' => $faker->numberBetween(1, 50),
     ];
 });
