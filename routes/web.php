@@ -15,4 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('blogUsers', 'BlogUserController@index');
+Route::get('blogUsers', 'BlogUserController@index')->name('blogUsers.index');
+
+Route::get('blogUsers/create', 'BlogUserController@create')->name('blogUsers.create');
+
+Route::post('blogUsers', 'BlogUserController@store')->name('blogUsers.store');
+
+Route::get('blogUsers/{id}', 'BlogUserController@show')->name('blogUsers.show');
+
+

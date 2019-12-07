@@ -28,6 +28,7 @@ class BlogUserController extends Controller
     public function create()
     {
         //
+        return view('blogUsers.create');
     }
 
     /**
@@ -39,6 +40,7 @@ class BlogUserController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request['status']);
     }
 
     /**
@@ -50,6 +52,8 @@ class BlogUserController extends Controller
     public function show($id)
     {
         //
+        $blogUser = BlogUser::findOrFail($id);
+        return view('blogUsers.show', ['blogUser' => $blogUser]);
     }
 
     /**

@@ -10,10 +10,12 @@
 
         @foreach ($blogUsers as $blogUser)
         
-            <li>{{  $blogUser->name   }}</li>
+            <li><a href="{{ route('blogUsers.show', ['id' => $blogUser->id]) }}">{{ $blogUser->name }}</a></li>
 
         @endforeach
 
     </ul>
+
+    <a href="{{ route('blogUsers.create') }}">Create Blogger</a>
 
 @endsection
