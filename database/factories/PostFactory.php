@@ -11,6 +11,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'text' => $faker->realText(50, 2),
         'image' => $faker->image('/tmp', 640, 480, 'cats', false),
         'date_posted' => $faker->dateTimeThisMonth(),
-        'blog_user_id' => $faker->numberBetween(1, 51),
+        'blog_user_id' => $faker->numberBetween(1, 5),
     ];
 });

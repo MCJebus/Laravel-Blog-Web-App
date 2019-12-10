@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
+use App\Post;
 use App\BlogUser;
-use App\User;
 
-class BlogUserController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,8 @@ class BlogUserController extends Controller
     public function index()
     {
         //
-        $blogUsers = BlogUser::all();
-        return view('blogUsers.index', ['blogUsers' => $blogUsers]);
+        $comments = Comment::all();
+        return view('comments.index', ['comments' => $comments]);
     }
 
     /**
@@ -28,8 +29,9 @@ class BlogUserController extends Controller
     public function create()
     {
         //
-        $users = User::orderBy('name', 'asc')->get();
-        return view('blogUsers.create', ['users' => $users]);
+        $posts = Post::orderBy('id', 'asc')->get();
+        $blogUsers = BlogUser::orderBy('name', 'asc')->get();
+        return view('comments.create', ['blogUsers' => $blogUsers, 'posts' => $posts]);
     }
 
     /**
@@ -42,23 +44,19 @@ class BlogUserController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'date_of_birth' => 'nullable|date',
-            'status' => 'nullable|max:255',
-            'phone_number' => 'nullable|numeric',
-            'user_id' => 'required|integer',
+            'text' => 'nullable|max:255',
+            'post_id' => 'required|integer',
+            'blog_user_id' => 'required|integer',
         ]);
 
-        $user = new BlogUser;
-        $user->name = $validatedData['name'];
-        $user->date_of_birth = $validatedData['date_of_birth'];
-        $user->status = $validatedData['status'];
-        $user->phone_number = $validatedData['phone_number'];
-        $user->user_id = $validatedData['user_id'];
-        $user->save();
+        $comment = new Comment;
+        $comment->text = $validatedData['text'];
+        $comment->post_id = $validatedData['post_id'];
+        $comment->blog_user_id = $validatedData['blog_user_id'];
+        $comment->save();
 
-        session()->flash('message', 'Blogger was created.');
-        return redirect()->route('blogUsers.index');
+        session()->flash('message', 'Comment was created.');
+        return redirect()->route('comments.index');
     }
 
     /**
@@ -70,8 +68,8 @@ class BlogUserController extends Controller
     public function show($id)
     {
         //
-        $blogUser = BlogUser::findOrFail($id);
-        return view('blogUsers.show', ['blogUser' => $blogUser]);
+        $comment = Comment::findOrFail($id);
+        return view('comments.show', ['comment' => $comment]);
     }
 
     /**
@@ -83,8 +81,6 @@ class BlogUserController extends Controller
     public function edit($id)
     {
         //
-        $blogUser = BlogUser::findOrFail($id);
-        return view('blogUsers.edit', ['blogUser' => $blogUser]);
     }
 
     /**
@@ -108,10 +104,10 @@ class BlogUserController extends Controller
     public function destroy($id)
     {
         //
-        $blogUser = BlogUser::findOrFail($id);
-        $blogUser->delete();
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
 
         //Redirect to bloggers page with session message.
-        return redirect()->route('blogUsers.index')->with('message', 'Blogger was deleted.');
+        return redirect()->route('comments.index')->with('message', 'Comment was deleted.');
     }
 }

@@ -13,13 +13,12 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        $a = new User;
-        $a->name = 'Raj';
-        $a->email = '957457@swansea.ac.uk';
-        $a->password = 'secret';
-        $a->auth_level = 'admin';
-        $a->save();
+        //$a = new User;
+        //$a->name = 'Raj';
+        //$a->email = '957457@swansea.ac.uk';
+        //$a->password = 'secret';
+        //$a->save();
 
-        factory(App\User::class, 50)->create();
+        factory(App\User::class, 5)->create();
     }
 }

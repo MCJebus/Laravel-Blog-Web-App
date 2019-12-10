@@ -12,7 +12,15 @@
         <li>Phone Number: {{ $blogUser->phone_number }}</li>
         <li>User: {{ $blogUser->user->name }}</li>
        
-
     </ul>
+
+    <form method="POST"
+        action="{{ route('blogUsers.destroy', ['id' => $blogUser->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete</button>
+    </form>
+
+    <p><a href="{{ route('blogUsers.index') }}">Back</a></p>
 
 @endsection
