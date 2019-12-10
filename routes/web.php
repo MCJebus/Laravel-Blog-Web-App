@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('blogUsers', 'BlogUserController@index')->name('blogUsers.index');
 
 Route::get('blogUsers/create', 'BlogUserController@create')->name('blogUsers.create');
@@ -23,6 +22,10 @@ Route::get('blogUsers/create', 'BlogUserController@create')->name('blogUsers.cre
 Route::post('blogUsers', 'BlogUserController@store')->name('blogUsers.store');
 
 Route::get('blogUsers/{id}', 'BlogUserController@show')->name('blogUsers.show');
+
+Route::get('blogUsers/{id}/posts', 'BlogUserController@posts')->name('blogUsers.posts');
+
+Route::get('blogUsers/{id}/comments', 'BlogUserController@comments')->name('blogUsers.comments');
 
 Route::get('blogUsers/{id}/edit', 'BlogUserController@edit')->name('blogUsers.edit');
 

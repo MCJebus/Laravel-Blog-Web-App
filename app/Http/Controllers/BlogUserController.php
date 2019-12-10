@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BlogUser;
 use App\User;
+use App\Post;
 
 class BlogUserController extends Controller
 {
@@ -73,6 +74,32 @@ class BlogUserController extends Controller
         $blogUser = BlogUser::findOrFail($id);
         $groups = BlogUser::findOrFail($id)->groups;
         return view('blogUsers.show', ['blogUser' => $blogUser, 'groups' => $groups]);
+    }
+
+    /**
+     * Display the blogger's posts.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function posts($id)
+    {
+        $blogUser = BlogUser::findOrFail($id);
+        $posts = BlogUser::findOrFail($id)->posts;
+        return view('blogUsers.posts', ['blogUser' => $blogUser, 'posts' => $posts]);
+    }
+
+    /**
+     * Display the blogger's comments.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function comments($id)
+    {
+        $blogUser = BlogUser::findOrFail($id);
+        $comments = BlogUser::findOrFail($id)->comments;
+        return view('blogUsers.comments', ['blogUser' => $blogUser, 'comments' => $comments]);
     }
 
     /**

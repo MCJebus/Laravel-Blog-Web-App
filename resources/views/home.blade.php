@@ -20,4 +20,14 @@
         </div>
     </div>
 </div>
+
+@if (Auth::user()->blogUser)
+
+    <p><a href="{{ route('blogUsers.show', Auth::user()->blogUser->id) }}">My blogger profile</a></p>
+    <p><a href="{{ route('blogUsers.posts', Auth::user()->blogUser) }}">My posts</a></p>
+    <p><a href="{{ route('blogUsers.comments', Auth::user()->blogUser) }}">My comments</a></p>
+@else
+    <p><a href="{{ route('blogUsers.create') }}">Create blogger</a></p>
+@endif
+
 @endsection
