@@ -69,7 +69,8 @@ class PostController extends Controller
     {
         //
         $post = Post::findOrFail($id);
-        return view('posts.show', ['post' => $post]);
+        $comments = Post::findOrFail($id)->comments;
+        return view('posts.show', ['post' => $post, 'comments' => $comments]);
     }
 
     /**

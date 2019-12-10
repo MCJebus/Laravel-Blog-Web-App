@@ -23,4 +23,20 @@
 
     <p><a href="{{ route('posts.index') }}">Back</a></p>
 
+@if (count($comments) > 0)
+    <p>Comments: 
+            @foreach ($comments as $comment)
+            <ul>
+
+                <li>Comment ID: {{ $comment->id }}</li>
+                <li>Text: {{ $comment->text}}</li>
+                <li>Blogger: {{ $comment->blogUser->name }}</li>
+
+            </ul>
+            @endforeach
+    </p>
+@else
+        <p>No comments for this post.</p>
+@endif
+
 @endsection
