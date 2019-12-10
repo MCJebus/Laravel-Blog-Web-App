@@ -23,6 +23,8 @@
 
     <p><a href="{{ route('posts.index') }}">Back</a></p>
 
+    <p><a href="{{ route('comments.create') }}">Comment on this post</a></p>
+    
 @if (count($comments) > 0)
     <p>Comments: 
             @foreach ($comments as $comment)

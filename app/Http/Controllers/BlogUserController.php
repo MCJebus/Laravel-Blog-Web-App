@@ -71,7 +71,8 @@ class BlogUserController extends Controller
     {
         //
         $blogUser = BlogUser::findOrFail($id);
-        return view('blogUsers.show', ['blogUser' => $blogUser]);
+        $groups = BlogUser::findOrFail($id)->groups;
+        return view('blogUsers.show', ['blogUser' => $blogUser, 'groups' => $groups]);
     }
 
     /**
