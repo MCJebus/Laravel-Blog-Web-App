@@ -17,6 +17,5 @@
     </ul>
 
     <a href="{{ route('blogUsers.create') }}">Create Blogger</a>
-    <a href="{{ route('blogUsers.edit') }}">Edit Blogger</a>
-    
+
 @endsection

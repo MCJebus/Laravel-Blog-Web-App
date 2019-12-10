@@ -21,6 +21,8 @@
         <button type="submit">Delete</button>
     </form>
 
+    <a href="{{ route('blogUsers.edit', $blogUser->id) }}">Edit Blogger</a>
+
     <p><a href="{{ route('blogUsers.index') }}">Back</a></p>
 
 @endsection

@@ -4,9 +4,10 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('blogUsers.update') }}">
+    <form method="POST" action="{{ route('blogUsers.update', $blogUser->id) }}">
 
         @csrf
+        @method('PUT')
 
         <p>Profile Name: <input type="text" name="name" value="{{ old('name') }}"></p>
         <p>Date of Birth: <input type="text" name="date_of_birth" value="{{ old('date_of_birth') }}"></p>

@@ -83,8 +83,9 @@ class BlogUserController extends Controller
     public function edit($id)
     {
         //
+        $users = User::orderBy('name', 'asc')->get();
         $blogUser = BlogUser::findOrFail($id);
-        return view('blogUsers.edit', ['blogUser' => $blogUser]);
+        return view('blogUsers.edit', ['blogUser' => $blogUser, 'users' => $users]);
     }
 
     /**
@@ -97,6 +98,24 @@ class BlogUserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'date_of_birth' => 'nullable|date',
+            'status' => 'nullable|max:255',
+            'phone_number' => 'nullable|numeric',
+            'user_id' => 'required|integer',
+        ]);
+
+        $blogUser = BlogUser::findOrFail($id);
+        $blogUser->name = $validatedData['name'];
+        $blogUser->date_of_birth = $validatedData['date_of_birth'];
+        $blogUser->status = $validatedData['status'];
+        $blogUser->phone_number = $validatedData['phone_number'];
+        $blogUser->user_id = $validatedData['user_id'];
+        $blogUser->save();
+
+        session()->flash('message', 'Blogger was updated.');
+        return redirect()->route('blogUsers.index');
     }
 
     /**
