@@ -4,6 +4,13 @@
 
 @section('content')
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Create Blogger') }}</div>
+
+                <div class="card-body">
     <p>The bloggers that use this site:</p>
 
     <ul>
@@ -18,4 +25,10 @@
 
     <a href="{{ route('blogUsers.create') }}">Create Blogger</a>
 
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 @endsection

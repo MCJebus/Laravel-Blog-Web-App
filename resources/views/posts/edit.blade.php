@@ -3,6 +3,13 @@
 @section('title', 'Edit Post')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Blogger Posts') }}</div>
+
+                <div class="card-body">
     @if (Auth::user()->blogUser->id == $post->blog_user_id)
         <form method="POST" action="{{ route('posts.update', $post->id) }}">
 
@@ -33,4 +40,9 @@
     @else
         <p>You cannot edit someone elses posts.</p>
     @endif
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

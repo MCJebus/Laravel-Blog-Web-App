@@ -3,7 +3,13 @@
 @section('title', 'Post Details')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Blogger Posts') }}</div>
 
+                <div class="card-body">
     <ul>
 
         <li>Post ID: {{ $post->id }}</li>
@@ -46,4 +52,9 @@
         <p>No comments for this post.</p>
 @endif
 
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

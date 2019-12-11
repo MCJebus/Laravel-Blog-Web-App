@@ -3,7 +3,13 @@
 @section('title', '{{ $blogUser->name }} Posts')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Blogger Posts') }}</div>
 
+                <div class="card-body">
     <ul>
 
         <li>Profile Name: {{ $blogUser->name }}</li>
@@ -11,6 +17,7 @@
         <li>Status: {{ $blogUser->status ?? 'No Status Set' }}</li>
         <li>Phone Number: {{ $blogUser->phone_number }}</li>
         <li>User: {{ $blogUser->user->name }}</li>
+        <p></p>
         @if (count($posts) > 0)
             <p>Posts:
                 @foreach ($posts as $post)
@@ -27,4 +34,9 @@
 
     <p><a href="{{ route('home') }}">Home</a></p>
 
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

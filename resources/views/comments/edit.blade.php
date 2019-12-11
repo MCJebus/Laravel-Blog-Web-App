@@ -3,6 +3,13 @@
 @section('title', 'Edit Comment')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Blogger Posts') }}</div>
+
+                <div class="card-body">
     @if (Auth::user()->blogUser->id == $comment->blog_user_id)
         <form method="POST" action="{{ route('comments.update', $comment->id) }}">
 
@@ -43,4 +50,10 @@
     @else
         <p>You cannot edit someone elses comments.</p>
     @endif
+    
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
