@@ -80,7 +80,10 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posts = Post::orderBy('id', 'asc')->get();
+        $blogUsers = BlogUser::orderBy('name', 'asc')->get();
+        $comment = Comment::findOrFail($id);
+        return view('comments.edit', ['blogUsers' => $blogUsers, 'comment' => $comment, 'posts' => $posts]);
     }
 
     /**
@@ -93,6 +96,21 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'text' => 'required|max:255',
+            'post_id' => 'required|integer',
+            'blog_user_id' => 'required|integer',
+        ]);
+        
+        $blogUser = BlogUser::findOrFail($validatedData['blog_user_id']);
+        $comment = Comment::findOrFail($id);
+        $comment->text = $validatedData['text'];
+        $comment->post_id = $validatedData['post_id'];
+        $comment->blog_user_id = $validatedData['blog_user_id'];
+        $comment->save();
+
+        session()->flash('message', 'Comment was updated.');
+        return redirect()->route('comments.index');
     }
 
     /**

@@ -20,6 +20,8 @@
         <button type="submit">Delete</button>
     </form>
 
+    <p><a href="{{ route('comments.edit', $comment->id) }}">Edit Comment</a></p>
+
     <p><a href="{{ route('comments.index') }}">Back</a></p>
 
 @endsection

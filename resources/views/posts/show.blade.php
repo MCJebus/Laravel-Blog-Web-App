@@ -8,6 +8,7 @@
 
         <li>Post ID: {{ $post->id }}</li>
         <li>Text: {{ $post->text ?? 'No Text Set'}}</li>
+        <img src="/tmp/{{ $post->image }}" alt="Image for the post.">
         <li>Image: {{ $post->image ?? 'No Image Set' }}</li>
         <li>Date Posted: {{ $post->date_posted }}</li>
         <li>Blogger: {{ $post->blogUser->name }}</li>
@@ -20,6 +21,10 @@
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
+
+
+
+    <p><a href="{{ route('posts.edit', $post->id) }}">Edit Post</a></p>
 
     <p><a href="{{ route('posts.index') }}">Back</a></p>
 

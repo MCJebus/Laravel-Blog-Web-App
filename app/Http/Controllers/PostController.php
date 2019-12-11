@@ -82,6 +82,9 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        $blogUsers = BlogUser::orderBy('name', 'asc')->get();
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['blogUsers' => $blogUsers, 'post' => $post]);
     }
 
     /**
@@ -94,6 +97,23 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'text' => 'required|max:255',
+            'image' => 'nullable|max:255',
+            'date_posted' => 'required|date',
+            'blog_user_id' => 'required|integer',
+        ]);
+        
+        $blogUser = BlogUser::findOrFail($validatedData['blog_user_id']);
+        $post = Post::findOrFail($id);
+        $post->text = $validatedData['text'];
+        $post->image = $validatedData['image'];
+        $post->date_posted = $validatedData['date_posted'];
+        $post->blog_user_id = $validatedData['blog_user_id'];
+        $post->save();
+
+        session()->flash('message', 'Post was updated.');
+        return redirect()->route('posts.index');
     }
 
     /**
