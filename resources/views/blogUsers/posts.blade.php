@@ -23,7 +23,11 @@
                 @foreach ($posts as $post)
                     <li>Post ID: {{ $post->id }}</li>
                     <li>Text: {{ $post->text }}</li>
-                    <li>Image: {{ $post->image }}</li>
+                    @if ($post->image)
+                        <img src="{{ asset($post->image) }}" style="width: 275px; height: 200px;">
+                    @else
+                        <li>Image: No Image Set</li>
+                    @endif
                     <p></p>
                 @endforeach
             </p>

@@ -24,6 +24,7 @@
                 @foreach ($comments as $comment)
                     <li>Comment ID: {{ $comment->id }}</li>
                     <li>Text: {{ $comment->text }}</li>
+                    <li>Post ID: {{ $comment->post_id }}</li>
                     <p></p>
                 @endforeach
             </p>

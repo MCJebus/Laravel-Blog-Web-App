@@ -77,4 +77,4 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 
 //Route::view('/home', 'home')->middleware('auth');
 
-Route::view('/admin', 'admin')->middleware('auth');
+Route::view('/admin', 'admin')->name('admin');
