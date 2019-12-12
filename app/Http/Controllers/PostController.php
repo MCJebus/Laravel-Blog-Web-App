@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\BlogUser;
+use App\Traits\UploadTrait;
 
 class PostController extends Controller
 {
+    use UploadTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -46,17 +49,37 @@ class PostController extends Controller
             'image' => 'nullable|max:255',
             'date_posted' => 'required|date',
             'blog_user_id' => 'required|integer',
+            'check_id' => 'required|integer',
         ]);
 
-        $post = new Post;
-        $post->text = $validatedData['text'];
-        $post->image = $validatedData['image'];
-        $post->date_posted = $validatedData['date_posted'];
-        $post->blog_user_id = $validatedData['blog_user_id'];
-        $post->save();
-
-        session()->flash('message', 'Post was created.');
-        return redirect()->route('posts.index');
+        if ($validatedData['check_id'] == $validatedData['blog_user_id'])
+        {
+            $post = new Post;
+            $post->text = $validatedData['text'];
+            if ($request->has('image')) {
+                // Get image file
+                $image = $request->file('image');
+                // Make a image name based on Blogger ID and current timestamp
+                $name = Str::slug($request->input('blog_user_id')).'_'.time();
+                // Define folder path
+                $folder = '/uploads/images/';
+                // Make a file path where image will be stored [ folder path + file name + file extension]
+                $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+                // Upload image
+                $this->uploadOne($image, $folder, 'public', $name);
+                // Set user profile image path in database to filePath
+                $post->image = $filePath;
+            }
+            $post->date_posted = $validatedData['date_posted'];
+            $post->blog_user_id = $validatedData['blog_user_id'];
+            $post->save();
+            
+            session()->flash('message', 'Post was created.');
+            return redirect()->route('posts.index');
+        } else {
+            session()->flash('message', 'You cannot post as someone else.');
+            return redirect()->route('posts.create');
+        }
     }
 
     /**

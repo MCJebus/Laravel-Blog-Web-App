@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'image',
+    ];
+
+    public function getImageAttribute() 
+    {
+        return $this->profile_image;
+    }
     //
     public function blogUser()
     {
