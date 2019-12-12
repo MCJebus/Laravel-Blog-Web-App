@@ -14,8 +14,11 @@
 
         <li>Post ID: {{ $post->id }}</li>
         <li>Text: {{ $post->text ?? 'No Text Set'}}</li>
-        <img src="/tmp/{{ $post->image }}" alt="Image for the post.">
-        <li>Image: {{ $post->image ?? 'No Image Set' }}</li>
+        @if ($post->image)
+            <img src="{{ asset($post->image) }}" style="width: 275px; height: 183px;">
+        @else
+            <li>Image: No Image Set</li>
+        @endif
         <li>Date Posted: {{ $post->date_posted }}</li>
         <li>Blogger: {{ $post->blogUser->name }}</li>
        

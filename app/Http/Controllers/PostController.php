@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Post;
 use App\BlogUser;
@@ -46,7 +47,7 @@ class PostController extends Controller
         //
         $validatedData = $request->validate([
             'text' => 'nullable|max:255',
-            'image' => 'nullable|max:255',
+            'image'     =>  'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'date_posted' => 'required|date',
             'blog_user_id' => 'required|integer',
             'check_id' => 'required|integer',

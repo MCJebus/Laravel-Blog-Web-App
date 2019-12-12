@@ -10,10 +10,6 @@ class Post extends Model
         'image',
     ];
 
-    public function getImageAttribute() 
-    {
-        return $this->profile_image;
-    }
     //
     public function blogUser()
     {
