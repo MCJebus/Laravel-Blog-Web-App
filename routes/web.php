@@ -63,6 +63,10 @@ Route::match(['put', 'patch'], 'comments/{id}', 'CommentController@update')->nam
 
 Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy')->middleware('auth');
 
+Route::get('groups', 'GroupController@index')->name('groups.index')->middleware('auth');
+
+Route::get('groups/{id}', 'GroupController@show')->name('groups.show')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
