@@ -28,6 +28,7 @@
                     @else
                         <li>Image: No Image Set</li>
                     @endif
+                    <li>Blogger: {{ $post->blogUser->name }}</li>
                     <p></p>
                 @endforeach
             </p>

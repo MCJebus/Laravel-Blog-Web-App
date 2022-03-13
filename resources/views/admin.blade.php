@@ -9,6 +9,7 @@
 
                     <div class="card-body">
                         Hi boss!
+                        Only admins can see this page.
                     </div>
                 </div>
             </div>
